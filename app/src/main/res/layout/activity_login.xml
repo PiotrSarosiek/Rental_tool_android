@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="232dp"
+        android:layout_height="229dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="88dp"
+        android:src="@drawable/logo" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="#244BB5">
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_below="@+id/imageView"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="e-mail"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/frameLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#244BB5">
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_below="@+id/frameLayout1"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="password"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="remember me"
+        android:layoutDirection="rtl"
+        app:switchPadding="8dp"
+        android:layout_below="@+id/frameLayout2"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/switch1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Log in"
+        android:textAllCaps="false"
+        android:textSize="18dp" />
+
+
+</RelativeLayout>
