@@ -1,14 +1,11 @@
 package com.rental_tool.api;
 
-import com.rental_tool.service.UserService;
-
-import org.jetbrains.annotations.NotNull;
+import com.rental_tool.service.ApiService;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Cookie;
@@ -21,7 +18,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class ApiClient {
 
-    public static final UserService userService = getRetrofit().create(UserService.class);
+    public static final ApiService API_SERVICE = getRetrofit().create(ApiService.class);
 
     public static Retrofit getRetrofit(){
 
@@ -44,8 +41,8 @@ public class ApiClient {
                 .build();
     }
 
-    public static UserService getUserService(){
-        return userService;
+    public static ApiService getApiService(){
+        return API_SERVICE;
     }
 
     private static class SessionCookieJar implements CookieJar {

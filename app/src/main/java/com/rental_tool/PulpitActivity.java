@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,8 +19,6 @@ import com.rental_tool.dto.login.LoginResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -96,12 +93,12 @@ public class PulpitActivity extends AppCompatActivity {
     }
 
     public void logoutUser(){
-        ApiClient.getUserService().logoutUser();
+        ApiClient.getApiService().logoutUser();
     }
 
 
     public void getApartments(){
-        Call<List<ApartmentResponse>> apartmentsResponseCall = ApiClient.getUserService().getApartments();
+        Call<List<ApartmentResponse>> apartmentsResponseCall = ApiClient.getApiService().getApartments();
         apartmentsResponseCall.enqueue(new Callback<List<ApartmentResponse>>() {
             @Override
             public void onResponse(@NotNull Call<List<ApartmentResponse>> call, @NotNull Response<List<ApartmentResponse>> response) {

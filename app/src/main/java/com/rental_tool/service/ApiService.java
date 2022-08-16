@@ -3,6 +3,7 @@ package com.rental_tool.service;
 import com.rental_tool.dto.apartment.ApartmentRequestBody;
 import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.login.LoginResponse;
+import com.rental_tool.dto.tenant.TenantResponse;
 
 import java.util.List;
 
@@ -12,8 +13,9 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
-public interface UserService {
+public interface ApiService {
 
     @FormUrlEncoded
     @POST("login")
@@ -27,5 +29,8 @@ public interface UserService {
 
     @POST("apartment")
     Call<ApartmentResponse> createApartment(@Body ApartmentRequestBody apartmentRequestBody);
+
+    @GET("apartment/{id}/tenant")
+    Call<List<TenantResponse>> getTenants(@Path("id") int apartmentId);
 
 }

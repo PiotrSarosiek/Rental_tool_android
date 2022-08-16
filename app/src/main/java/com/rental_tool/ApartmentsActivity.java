@@ -16,13 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.rental_tool.api.ApiClient;
 import com.rental_tool.dto.apartment.ApartmentListResponse;
 import com.rental_tool.dto.apartment.ApartmentRequestBody;
 import com.rental_tool.dto.apartment.ApartmentResponse;
-import com.rental_tool.dto.login.LoginRequest;
-import com.rental_tool.dto.login.LoginResponse;
+import com.rental_tool.dto.tenant.TenantListResponse;
+import com.rental_tool.dto.tenant.TenantResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,13 +32,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ApartmentsActivity extends AppCompatActivity {
+public class ApartmentsActivity extends AppCompatActivity implements RecyclerViewInterface{
 
     ApartmentListResponse apartmentListResponse;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     List<ApartmentItem> apartments;
-    Adapter adapter;
+    ApartmentsAdapter apartmentsAdapter;
     AlertDialog.Builder dialogBuilder;
     AlertDialog dialog;
     EditText editTextAddress;
@@ -86,9 +85,9 @@ public class ApartmentsActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new Adapter(apartments);
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
+        apartmentsAdapter = new ApartmentsAdapter(apartments, this);
+        apartmentsAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(apartmentsAdapter);
     }
 
     public void creteNewApartmentPopup(){
@@ -119,13 +118,14 @@ public class ApartmentsActivity extends AppCompatActivity {
     }
 
     public void createApartment(String address){
-        Call<ApartmentResponse> apartmentResponseCall = ApiClient.getUserService().createApartment(new ApartmentRequestBody(address));
+        Call<ApartmentResponse> apartmentResponseCall = ApiClient.getApiService().createApartment(new ApartmentRequestBody(address));
         apartmentResponseCall.enqueue(new Callback<ApartmentResponse>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(@NotNull Call<ApartmentResponse> call, @NotNull Response<ApartmentResponse> response) {
                 if(response.isSuccessful()){
                     ApartmentResponse apartmentResponse = response.body();
+                    apartmentListResponse.getApartmentResponseList().add(apartmentResponse);
                     apartments.add(new ApartmentItem(apartmentResponse.getAddress()));
                     initRecyclerView();
                 }
@@ -143,19 +143,28 @@ public class ApartmentsActivity extends AppCompatActivity {
         });
     }
 
-    public void getApartments(){
-        Call<List<ApartmentResponse>> apartmentsResponseCall = ApiClient.getUserService().getApartments();
-        apartmentsResponseCall.enqueue(new Callback<List<ApartmentResponse>>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ApartmentsActivity.this, PulpitActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onItemCLick(int position) {
+        getTenants(apartmentListResponse.getApartmentResponseList().get(position).getId(), apartmentListResponse.getApartmentResponseList().get(position).getAddress());
+    }
+
+    public void getTenants(Integer apartmentId, String address){
+        Call<List<TenantResponse>> tenantsResponseCall = ApiClient.getApiService().getTenants(apartmentId);
+        tenantsResponseCall.enqueue(new Callback<List<TenantResponse>>() {
             @Override
-            public void onResponse(@NotNull Call<List<ApartmentResponse>> call, @NotNull Response<List<ApartmentResponse>> response) {
+            public void onResponse(@NotNull Call<List<TenantResponse>> call, @NotNull Response<List<TenantResponse>> response) {
                 if(response.isSuccessful()){
-                    List<ApartmentResponse> apartmentResponseList = response.body();
-                    apartments = new ArrayList<>();
-                    apartmentListResponse.getApartmentResponseList().forEach(apartmentResponse -> {
-                        apartments.add(new ApartmentItem(apartmentResponse.getAddress()));
-                    });
-                    initRecyclerView();
+                    List<TenantResponse> tenantResponseList = response.body();
+                    startActivity(new Intent(ApartmentsActivity.this, ApartmentActivity.class)
+                            .putExtra("data", new TenantListResponse(tenantResponseList))
+                            .putExtra("address", address));
+                    //finish();
                 }
                 else{
                     String message = "An error occurred please try again";
@@ -164,16 +173,11 @@ public class ApartmentsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NotNull Call<List<ApartmentResponse>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<TenantResponse>> call, Throwable t) {
                 String message = t.getLocalizedMessage();
                 Toast.makeText(ApartmentsActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(ApartmentsActivity.this, PulpitActivity.class));
-        finish();
-    }
 }
