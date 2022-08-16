@@ -24,7 +24,8 @@
         android:text="Address"
         android:textAlignment="viewStart"
         android:gravity="center"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/tenants"
@@ -37,6 +38,16 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_below="@+id/imageView"/>
+
+    <Button
+        android:id="@+id/button_create_tenant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:text="Add tenant"
+        android:textSize="13sp"
+        android:layout_below="@+id/apartment_address" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/tenants"

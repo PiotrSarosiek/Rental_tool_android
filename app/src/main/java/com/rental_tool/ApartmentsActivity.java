@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rental_tool.api.ApiClient;
 import com.rental_tool.dto.apartment.ApartmentListResponse;
-import com.rental_tool.dto.apartment.ApartmentRequestBody;
+import com.rental_tool.dto.apartment.ApartmentRequest;
 import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.tenant.TenantListResponse;
 import com.rental_tool.dto.tenant.TenantResponse;
@@ -118,7 +118,7 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
     }
 
     public void createApartment(String address){
-        Call<ApartmentResponse> apartmentResponseCall = ApiClient.getApiService().createApartment(new ApartmentRequestBody(address));
+        Call<ApartmentResponse> apartmentResponseCall = ApiClient.getApiService().createApartment(new ApartmentRequest(address));
         apartmentResponseCall.enqueue(new Callback<ApartmentResponse>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -163,7 +163,8 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
                     List<TenantResponse> tenantResponseList = response.body();
                     startActivity(new Intent(ApartmentsActivity.this, ApartmentActivity.class)
                             .putExtra("data", new TenantListResponse(tenantResponseList))
-                            .putExtra("address", address));
+                            .putExtra("address", address)
+                            .putExtra("apartmentId", apartmentId));
                     //finish();
                 }
                 else{

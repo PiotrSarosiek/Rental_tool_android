@@ -1,8 +1,9 @@
 package com.rental_tool.service;
 
-import com.rental_tool.dto.apartment.ApartmentRequestBody;
+import com.rental_tool.dto.apartment.ApartmentRequest;
 import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.login.LoginResponse;
+import com.rental_tool.dto.tenant.TenantRequest;
 import com.rental_tool.dto.tenant.TenantResponse;
 
 import java.util.List;
@@ -28,9 +29,12 @@ public interface ApiService {
     Call<List<ApartmentResponse>> getApartments();
 
     @POST("apartment")
-    Call<ApartmentResponse> createApartment(@Body ApartmentRequestBody apartmentRequestBody);
+    Call<ApartmentResponse> createApartment(@Body ApartmentRequest apartmentRequestBody);
 
     @GET("apartment/{id}/tenant")
     Call<List<TenantResponse>> getTenants(@Path("id") int apartmentId);
+
+    @POST("apartment/{id}/tenant")
+    Call<TenantResponse> createTenant(@Path("id") int apartmentId, @Body TenantRequest tenantRequest);
 
 }

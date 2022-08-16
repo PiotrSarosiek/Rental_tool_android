@@ -1,10 +1,10 @@
 package com.rental_tool.dto.apartment;
 
-public class ApartmentRequestBody {
+public class ApartmentRequest {
 
     private String address;
 
-    public ApartmentRequestBody(String address) {
+    public ApartmentRequest(String address) {
         this.address = address;
     }
 

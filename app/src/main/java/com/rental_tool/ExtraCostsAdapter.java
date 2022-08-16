@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rental_tool.dto.stableBill.extraCostResponse.ExtraCostResponse;
-import com.rental_tool.dto.tenant.TenantResponse;
+
+import com.rental_tool.dto.extraCosts.ExtraCostResponse;
 
 import java.util.List;
 

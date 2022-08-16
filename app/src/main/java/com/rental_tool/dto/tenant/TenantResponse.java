@@ -1,10 +1,8 @@
 package com.rental_tool.dto.tenant;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rental_tool.dto.apartment.ApartmentResponse;
-import com.rental_tool.dto.stableBill.StableBillResponse;
-import com.rental_tool.dto.stableBill.extraCostResponse.ExtraCostResponse;
-import com.rental_tool.dto.unstableBill.UnstableBillResponse;
+
+import com.rental_tool.dto.extraCosts.ExtraCostResponse;
 import com.rental_tool.dto.user.UserResponse;
 
 import java.io.Serializable;

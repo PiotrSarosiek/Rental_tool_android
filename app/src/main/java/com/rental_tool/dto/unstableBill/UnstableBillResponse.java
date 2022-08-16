@@ -1,6 +1,8 @@
 package com.rental_tool.dto.unstableBill;
 
-import com.rental_tool.dto.stableBill.extraCostResponse.ExtraCostResponse;
+
+
+import com.rental_tool.dto.extraCosts.ExtraCostResponse;
 
 import java.io.Serializable;
 import java.util.List;

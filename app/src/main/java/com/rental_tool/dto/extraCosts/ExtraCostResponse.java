@@ -1,4 +1,4 @@
-package com.rental_tool.dto.stableBill.extraCostResponse;
+package com.rental_tool.dto.extraCosts;
 
 import java.io.Serializable;
 
