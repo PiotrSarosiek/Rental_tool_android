@@ -4,6 +4,7 @@ import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rental_tool.dto.stableBill.StableBillResponse;
+import com.rental_tool.dto.tenant.TenantResponse;
 import com.rental_tool.dto.unstableBill.UnstableBillResponse;
 import com.rental_tool.dto.user.UserResponse;
 
@@ -12,21 +13,20 @@ import java.util.List;
 
 public class ApartmentResponse implements Serializable{
 
-    private int id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private String address;
     private UserResponse landlord;
     private StableBillResponse stableBill;
     private List<UnstableBillResponse> unstableBills;
-    @JsonIgnore
-    private String tenants;
+    private List<TenantResponse> tenants;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -78,11 +78,11 @@ public class ApartmentResponse implements Serializable{
         this.unstableBills = unstableBills;
     }
 
-    public String getTenants() {
+    public List<TenantResponse> getTenants() {
         return tenants;
     }
 
-    public void setTenants(String tenants) {
+    public void setTenants(List<TenantResponse> tenants) {
         this.tenants = tenants;
     }
 }

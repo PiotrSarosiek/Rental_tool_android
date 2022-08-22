@@ -3,7 +3,7 @@ package com.rental_tool.dto.user;
 import java.io.Serializable;
 
 public class UserResponse implements Serializable {
-    private int id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private String email;
@@ -12,11 +12,11 @@ public class UserResponse implements Serializable {
     private String phone;
     private String role;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

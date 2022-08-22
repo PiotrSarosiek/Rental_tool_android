@@ -6,25 +6,17 @@ import java.io.Serializable;
 import java.util.List;
 
 public class StableBillResponse implements Serializable {
-    private int id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private Double administrativeRent;
     private List<ExtraCostResponse> extraCosts;
 
-    public List<ExtraCostResponse> getExtraCosts() {
-        return extraCosts;
-    }
-
-    public void setExtraCosts(List<ExtraCostResponse> extraCosts) {
-        this.extraCosts = extraCosts;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,5 +42,13 @@ public class StableBillResponse implements Serializable {
 
     public void setAdministrativeRent(Double administrativeRent) {
         this.administrativeRent = administrativeRent;
+    }
+
+    public List<ExtraCostResponse> getExtraCosts() {
+        return extraCosts;
+    }
+
+    public void setExtraCosts(List<ExtraCostResponse> extraCosts) {
+        this.extraCosts = extraCosts;
     }
 }

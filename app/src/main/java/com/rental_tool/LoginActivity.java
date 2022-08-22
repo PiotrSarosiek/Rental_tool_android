@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginResponse loginResponse = response.body();
                     if (loginResponse != null) {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("userId", loginResponse.getId());
+                        editor.putLong("userId", loginResponse.getId());
                         editor.putString("userEmail", loginResponse.getEmail());
                         editor.putString("userName", loginResponse.getName());
                         editor.putString("userSurname", loginResponse.getSurname());

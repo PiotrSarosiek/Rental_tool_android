@@ -1,11 +1,11 @@
 package com.rental_tool;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -20,13 +20,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rental_tool.api.ApiClient;
-import com.rental_tool.dto.apartment.ApartmentListResponse;
-import com.rental_tool.dto.apartment.ApartmentRequest;
-import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.extraCosts.ExtraCostDTO;
 import com.rental_tool.dto.tenant.TenantListResponse;
 import com.rental_tool.dto.tenant.TenantRequest;
 import com.rental_tool.dto.tenant.TenantResponse;
+import com.rental_tool.dto.tenantInvitation.TenantInvitationRequest;
+import com.rental_tool.dto.tenantInvitation.TenantInvitationResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -57,9 +56,16 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
     Button cancelButton;
     Button saveButton;
 
-    Integer apartmentId;
+    Long apartmentId;
     static ArrayList<ExtraCostDTO> extraCostDTOS = new ArrayList<>();
     static ListViewAdapter adapter;
+
+    EditText editTextEmail;
+    Button cancelButton2;
+    Button sendButton;
+    boolean invitationSent;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,11 +76,13 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
         recyclerView = findViewById(R.id.recyclerView);
         addTenantButton = findViewById(R.id.button_create_tenant);
 
+        sharedPreferences = getSharedPreferences("UserInfo", 0);
+
         Intent intent = getIntent();
         if(intent.getExtras() != null){
             tenantListResponse = (TenantListResponse) intent.getSerializableExtra("data");
             apartmentAddress.setText((String) intent.getSerializableExtra("address"));
-            apartmentId = ((Integer) intent.getSerializableExtra("apartmentId"));
+            apartmentId = ((Long) intent.getSerializableExtra("apartmentId"));
             Log.e("TAG", tenantListResponse.toString());
             initData();
             initRecyclerView();
@@ -102,8 +110,6 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
         dialog = dialogBuilder.create();
         dialog.show();
 
-        addItem("siema", "2");
-
         adapter = new ListViewAdapter(getApplicationContext(), extraCostDTOS);
         listView.setAdapter(adapter);
 
@@ -129,6 +135,36 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
                     TenantRequest tenantRequest = new TenantRequest(Double.parseDouble(editTextRent.getText().toString()), extraCostDTOS);
                     createTenant(apartmentId, tenantRequest);
                     dialog.dismiss();
+                }
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void inviteUserPopup(TenantResponse tenant){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View inviteUserPopupView = getLayoutInflater().inflate(R.layout.invite_user_popup, null);
+        editTextEmail = (EditText) inviteUserPopupView.findViewById(R.id.edit_text_email);
+        sendButton = (Button) inviteUserPopupView.findViewById(R.id.send_button);
+        cancelButton = (Button) inviteUserPopupView.findViewById(R.id.cancel_button);
+        dialogBuilder.setView(inviteUserPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editTextEmail != null){
+                    long landlordId = sharedPreferences.getLong("userId", 10000);
+                    createInvitation(editTextEmail.getText().toString(), landlordId, tenant.getId());
+                    if(invitationSent)
+                        dialog.dismiss();
                 }
             }
         });
@@ -168,10 +204,10 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
 
     @Override
     public void onItemCLick(int position) {
-
+        inviteUserPopup(tenants.get(position));
     }
 
-    public void createTenant(int apartmentId, TenantRequest tenantRequest){
+    public void createTenant(long apartmentId, TenantRequest tenantRequest){
         Call<TenantResponse> tenantResponseCall = ApiClient.getApiService().createTenant(apartmentId, tenantRequest);
         tenantResponseCall.enqueue(new Callback<TenantResponse>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -190,6 +226,32 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
 
             @Override
             public void onFailure(@NotNull Call<TenantResponse> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(ApartmentActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void createInvitation(String email, long landlordId, long tenantId){
+        Call<TenantInvitationResponse> tenantInvitationResponseCall = ApiClient.getApiService().createTenantInvitation(new TenantInvitationRequest(email, landlordId, tenantId));
+        tenantInvitationResponseCall.enqueue(new Callback<TenantInvitationResponse>() {
+            @Override
+            public void onResponse(Call<TenantInvitationResponse> call, Response<TenantInvitationResponse> response) {
+                if(response.isSuccessful()){
+                    TenantInvitationResponse tenantInvitationResponse = response.body();
+                    String message = tenantInvitationResponse.getUser().getName()+" "+tenantInvitationResponse.getUser().getSurname()+" invited";
+                    Toast.makeText(ApartmentActivity.this, message, Toast.LENGTH_LONG).show();
+                    invitationSent = true;
+                }
+                else{
+                    String message = "User does not exists";
+                    Toast.makeText(ApartmentActivity.this, message, Toast.LENGTH_LONG).show();
+                    invitationSent = false;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TenantInvitationResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();
                 Toast.makeText(ApartmentActivity.this, message, Toast.LENGTH_LONG).show();
             }

@@ -154,7 +154,7 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
         getTenants(apartmentListResponse.getApartmentResponseList().get(position).getId(), apartmentListResponse.getApartmentResponseList().get(position).getAddress());
     }
 
-    public void getTenants(Integer apartmentId, String address){
+    public void getTenants(Long apartmentId, String address){
         Call<List<TenantResponse>> tenantsResponseCall = ApiClient.getApiService().getTenants(apartmentId);
         tenantsResponseCall.enqueue(new Callback<List<TenantResponse>>() {
             @Override

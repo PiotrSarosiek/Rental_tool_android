@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/text_view_user"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/image_view"
             android:text="User"
@@ -29,6 +29,16 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/invite_user_button"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invite user"
+            android:layout_marginRight="10dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"/>
 
         <LinearLayout
             android:id="@+id/linear_layout"

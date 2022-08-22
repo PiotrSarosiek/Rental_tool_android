@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class LoginResponse implements Serializable {
 
-    private String id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private String email;
@@ -12,13 +12,31 @@ public class LoginResponse implements Serializable {
     private String surname;
     private String phone;
     private String role;
+    private boolean enabled;
+    private String lastUsageDate;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getModificationDate() {
+        return modificationDate;
+    }
+
+    public void setModificationDate(String modificationDate) {
+        this.modificationDate = modificationDate;
     }
 
     public String getEmail() {
@@ -61,19 +79,19 @@ public class LoginResponse implements Serializable {
         this.role = role;
     }
 
-    public String getCreationDate() {
-        return creationDate;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getModificationDate() {
-        return modificationDate;
+    public String getLastUsageDate() {
+        return lastUsageDate;
     }
 
-    public void setModificationDate(String modificationDate) {
-        this.modificationDate = modificationDate;
+    public void setLastUsageDate(String lastUsageDate) {
+        this.lastUsageDate = lastUsageDate;
     }
 }

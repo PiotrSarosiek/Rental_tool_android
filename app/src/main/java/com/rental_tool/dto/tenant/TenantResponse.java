@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TenantResponse implements Serializable {
 
-    private int id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private UserResponse user;
@@ -18,11 +18,11 @@ public class TenantResponse implements Serializable {
     private String rent;
     private List<ExtraCostResponse> extraCosts;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

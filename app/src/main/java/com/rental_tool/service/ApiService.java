@@ -5,6 +5,8 @@ import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.login.LoginResponse;
 import com.rental_tool.dto.tenant.TenantRequest;
 import com.rental_tool.dto.tenant.TenantResponse;
+import com.rental_tool.dto.tenantInvitation.TenantInvitationRequest;
+import com.rental_tool.dto.tenantInvitation.TenantInvitationResponse;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -32,9 +35,18 @@ public interface ApiService {
     Call<ApartmentResponse> createApartment(@Body ApartmentRequest apartmentRequestBody);
 
     @GET("apartment/{id}/tenant")
-    Call<List<TenantResponse>> getTenants(@Path("id") int apartmentId);
+    Call<List<TenantResponse>> getTenants(@Path("id") long apartmentId);
 
     @POST("apartment/{id}/tenant")
-    Call<TenantResponse> createTenant(@Path("id") int apartmentId, @Body TenantRequest tenantRequest);
+    Call<TenantResponse> createTenant(@Path("id") long apartmentId, @Body TenantRequest tenantRequest);
+
+    @POST("tenant_invitation")
+    Call<TenantInvitationResponse> createTenantInvitation(@Body TenantInvitationRequest tenantInvitationRequest);
+
+    @GET("tenant_invitation/user")
+    Call<List<TenantInvitationResponse>> getUserInvitations();
+
+    @PUT("tenant_invitation/{id}")
+    Call<TenantInvitationResponse> updateInvitationStatus(@Path("id") long tenantInvitationId, @Field("accepted") Boolean accepted);
 
 }

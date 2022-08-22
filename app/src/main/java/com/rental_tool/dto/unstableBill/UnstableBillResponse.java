@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class UnstableBillResponse implements Serializable {
-    private int id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private Double water;
@@ -17,11 +17,11 @@ public class UnstableBillResponse implements Serializable {
     private String validityMonth;
     private List<ExtraCostResponse> extraCosts;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

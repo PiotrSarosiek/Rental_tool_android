@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHold
         private final TextView textViewUser;
         private final TextView rentValue;
         private final ListView listViewExtraCosts;
+        private final Button inviteUserButton;
 
         public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -64,9 +66,10 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHold
             textViewUser = itemView.findViewById(R.id.text_view_user);
             rentValue = itemView.findViewById(R.id.rent_value);
             listViewExtraCosts = itemView.findViewById(R.id.list_view_extra_costs);
+            inviteUserButton = itemView.findViewById(R.id.invite_user_button);
 
 
-            /*itemView.setOnClickListener(new View.OnClickListener() {
+            inviteUserButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(recyclerViewInterface != null){
@@ -77,14 +80,19 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHold
                         }
                     }
                 }
-            });*/
+            });
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         public void setData(TenantResponse tenantResponse, Context context) {
-            if(tenantResponse.getUser()!=null)
+            if(tenantResponse.getUser()!=null){
                 textViewUser.setText(tenantResponse.getUser().getName()+" "+tenantResponse.getUser().getSurname());
-            else textViewUser.setText("Invitation send");
+                inviteUserButton.setVisibility(View.INVISIBLE);
+            }
+            else {
+                textViewUser.setText("No user assigned");
+            }
+
             rentValue.setText(tenantResponse.getRent());
             List<String> sth = new ArrayList<>();
             tenantResponse.getExtraCosts().forEach(extraCostResponse -> sth.add(extraCostResponse.getName()+": "+extraCostResponse.getAmount()));

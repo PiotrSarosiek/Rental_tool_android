@@ -3,17 +3,17 @@ package com.rental_tool.dto.extraCosts;
 import java.io.Serializable;
 
 public class ExtraCostResponse implements Serializable {
-    private int id;
+    private long id;
     private String creationDate;
     private String modificationDate;
     private String name;
     private String amount;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
