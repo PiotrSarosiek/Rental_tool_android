@@ -23,6 +23,9 @@
         <activity android:name=".PulpitActivity"/>
         <activity android:name=".ApartmentsActivity"/>
         <activity android:name=".ApartmentActivity"/>
+        <activity android:name=".PulpitTenantActivity"/>
+        <activity android:name=".ApartmentTenantActivity"/>
+        <activity android:name=".InvitationsActivity"/>
     </application>
 
 </manifest>

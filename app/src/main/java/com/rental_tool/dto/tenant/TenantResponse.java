@@ -15,7 +15,7 @@ public class TenantResponse implements Serializable {
     private String modificationDate;
     private UserResponse user;
     private ApartmentResponse apartment;
-    private String rent;
+    private double rent;
     private List<ExtraCostResponse> extraCosts;
 
     public long getId() {
@@ -58,11 +58,11 @@ public class TenantResponse implements Serializable {
         this.apartment = apartment;
     }
 
-    public String getRent() {
+    public double getRent() {
         return rent;
     }
 
-    public void setRent(String rent) {
+    public void setRent(double rent) {
         this.rent = rent;
     }
 

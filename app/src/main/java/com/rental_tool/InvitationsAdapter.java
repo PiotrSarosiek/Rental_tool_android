@@ -12,45 +12,45 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rental_tool.dto.tenant.TenantResponse;
+import com.rental_tool.dto.tenantInvitation.TenantInvitationResponse;
 import com.rental_tool.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHolder> {
+public class InvitationsAdapter extends RecyclerView.Adapter<InvitationsAdapter.ViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
     private final Context context;
 
-    private final List<TenantResponse> tenants;
+    private final List<TenantInvitationResponse> tenantInvitations;
 
-    public TenantsAdapter(List<TenantResponse> tenants, RecyclerViewInterface recyclerViewInterface, Context context) {
-        this.tenants = tenants;
+    public InvitationsAdapter(List<TenantInvitationResponse> tenantInvitations, RecyclerViewInterface recyclerViewInterface, Context context) {
+        this.tenantInvitations = tenantInvitations;
         this.recyclerViewInterface = recyclerViewInterface;
         this.context=context;
     }
 
     @NonNull
     @Override
-    public TenantsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tenant_item, parent, false);
+    public InvitationsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.invitation_item, parent, false);
         return new ViewHolder(view, recyclerViewInterface);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onBindViewHolder(@NonNull TenantsAdapter.ViewHolder holder, int position) {
-        TenantResponse tenantResponse = tenants.get(position);
-        holder.setData(tenantResponse, context);
+    public void onBindViewHolder(@NonNull InvitationsAdapter.ViewHolder holder, int position) {
+        TenantInvitationResponse tenantInvitationResponse = tenantInvitations.get(position);
+        holder.setData(tenantInvitationResponse, context);
     }
 
     @Override
     public int getItemCount() {
-        return tenants.size();
+        return tenantInvitations.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,7 +58,7 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHold
         private final TextView textViewUser;
         private final TextView rentValue;
         private final ListView listViewExtraCosts;
-        private final Button inviteUserButton;
+        private final Button acceptInvitationButton;
 
         public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -66,10 +66,9 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHold
             textViewUser = itemView.findViewById(R.id.text_view_user);
             rentValue = itemView.findViewById(R.id.rent_value);
             listViewExtraCosts = itemView.findViewById(R.id.list_view_extra_costs);
-            inviteUserButton = itemView.findViewById(R.id.invite_user_button);
+            acceptInvitationButton = itemView.findViewById(R.id.accept_invitation_button);
 
-
-            inviteUserButton.setOnClickListener(new View.OnClickListener() {
+            acceptInvitationButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(recyclerViewInterface != null){
@@ -84,25 +83,14 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.ViewHold
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
-        public void setData(TenantResponse tenantResponse, Context context) {
-            if(tenantResponse.getUser()!=null){
-                textViewUser.setText(tenantResponse.getUser().getName()+" "+tenantResponse.getUser().getSurname());
-                inviteUserButton.setVisibility(View.INVISIBLE);
-            }
-            else {
-                textViewUser.setText("No user assigned");
-            }
-
-            rentValue.setText(String.valueOf(tenantResponse.getRent()));
+        public void setData(TenantInvitationResponse tenantInvitationResponse, Context context) {
+            textViewUser.setText(tenantInvitationResponse.getLandlord().getName()+" "+tenantInvitationResponse.getLandlord().getSurname());
+            rentValue.setText(String.valueOf(tenantInvitationResponse.getTenant().getRent()));
             List<String> sth = new ArrayList<>();
-            tenantResponse.getExtraCosts().forEach(extraCostResponse -> sth.add(extraCostResponse.getName()+": "+extraCostResponse.getAmount()));
+            tenantInvitationResponse.getTenant().getExtraCosts().forEach(extraCostResponse -> sth.add(extraCostResponse.getName()+": "+extraCostResponse.getAmount()));
             listViewExtraCosts.setAdapter(new ArrayAdapter(context, android.R.layout.simple_list_item_1, sth));
             UIUtils.setListViewHeightBasedOnItems(listViewExtraCosts);
         }
-
     }
-
-
-
 
 }

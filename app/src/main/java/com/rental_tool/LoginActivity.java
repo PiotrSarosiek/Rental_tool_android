@@ -70,9 +70,16 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("userSurname", loginResponse.getSurname());
                         editor.putString("userRole", loginResponse.getRole());
                         editor.apply();
+                        switch (loginResponse.getRole()){
+                            case "LANDLORD":
+                                startActivity(new Intent(LoginActivity.this, PulpitActivity.class));
+                                break;
+                            case "TENANT":
+                                startActivity(new Intent(LoginActivity.this, PulpitTenantActivity.class));
+                                break;
+                        }
+                        finish();
                     }
-                    startActivity(new Intent(LoginActivity.this, PulpitActivity.class));
-                    finish();
                 }
                 else{
                     String message = "An error occurred please try again";

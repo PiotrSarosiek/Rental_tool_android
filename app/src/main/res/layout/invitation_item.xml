@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:background="@drawable/background_border">
+
+        <TextView
+            android:id="@+id/text_view_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From: "
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/text_view_user"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_toEndOf="@+id/text_view_from"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:layout_margin="10dp"
+
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_person_24" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/text_view_user"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/rent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_view"
+                android:text="Rent: "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/rent_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/rent"
+                android:text="1000"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/extra_costs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout"
+            android:layout_margin="10dp"
+            android:text="Extra costs"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+
+        <ListView
+            android:id="@+id/list_view_extra_costs"
+            android:layout_below="@+id/extra_costs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/accept_invitation_button"
+            android:layout_below="@+id/list_view_extra_costs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accept invitation"
+            android:layout_margin="10dp"
+            android:layout_alignParentEnd="true"
+            android:minHeight="0dp"
+            android:minWidth="0dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

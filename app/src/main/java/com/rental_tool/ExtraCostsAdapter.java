@@ -67,7 +67,7 @@ public class ExtraCostsAdapter extends RecyclerView.Adapter<ExtraCostsAdapter.Vi
 
         public void setData(ExtraCostResponse extraCostResponse) {
             textViewName.setText(extraCostResponse.getName());
-            textViewAmount.setText(extraCostResponse.getAmount());
+            textViewAmount.setText(String.valueOf(extraCostResponse.getAmount()));
         }
     }
 

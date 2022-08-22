@@ -49,4 +49,7 @@ public interface ApiService {
     @PUT("tenant_invitation/{id}")
     Call<TenantInvitationResponse> updateInvitationStatus(@Path("id") long tenantInvitationId, @Field("accepted") Boolean accepted);
 
+    @GET("apartment/assigned_to_tenant")
+    Call<ApartmentResponse> getApartmentByTenantAssignedToUser();
+
 }

@@ -7,7 +7,7 @@ public class ExtraCostResponse implements Serializable {
     private String creationDate;
     private String modificationDate;
     private String name;
-    private String amount;
+    private Double amount;
 
     public long getId() {
         return id;
@@ -41,11 +41,11 @@ public class ExtraCostResponse implements Serializable {
         this.name = name;
     }
 
-    public String getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }
