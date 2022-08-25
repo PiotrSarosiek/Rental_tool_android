@@ -65,21 +65,21 @@ public class PulpitActivity extends AppCompatActivity {
         imageViewFiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PulpitActivity.this, MainActivity.class).putExtra("data", loginResponse));
+
             }
         });
 
         imageViewMessages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PulpitActivity.this, MainActivity.class).putExtra("data", loginResponse));
+
             }
         });
 
         imageViewSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PulpitActivity.this, MainActivity.class).putExtra("data", loginResponse));
+                startActivity(new Intent(PulpitActivity.this, UserSettingsActivity.class));
             }
         });
 

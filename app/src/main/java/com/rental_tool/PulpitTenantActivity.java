@@ -72,7 +72,7 @@ public class PulpitTenantActivity extends AppCompatActivity {
         imageViewSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(PulpitTenantActivity.this, UserSettingsActivity.class));
             }
         });
 

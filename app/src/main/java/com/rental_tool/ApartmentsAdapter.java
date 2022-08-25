@@ -31,7 +31,8 @@ public class ApartmentsAdapter extends RecyclerView.Adapter<ApartmentsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ApartmentsAdapter.ViewHolder holder, int position) {
         String address = apartments.get(position).getAddress();
-        holder.setData(address);
+        String count = apartments.get(position).getTenantCount();
+        holder.setData(address, count);
     }
 
     @Override
@@ -42,11 +43,13 @@ public class ApartmentsAdapter extends RecyclerView.Adapter<ApartmentsAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textView;
+        private final TextView textViewUserCount;
 
         public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.text_view_address);
+            textViewUserCount = itemView.findViewById(R.id.user_count);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -62,8 +65,9 @@ public class ApartmentsAdapter extends RecyclerView.Adapter<ApartmentsAdapter.Vi
             });
         }
 
-        public void setData(String address) {
+        public void setData(String address, String count) {
             textView.setText(address);
+            textViewUserCount.setText(count);
         }
     }
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/text_view_change_password"
+        android:layout_marginTop="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change password"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18dp"/>
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/text_view_change_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="#244BB5">
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_below="@+id/imageView"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="old password"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/frameLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#244BB5">
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_below="@+id/frameLayout1"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="new password"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+
+
+    <Button
+        android:id="@+id/log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/frameLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="CONFIRM"
+        android:textAllCaps="false"
+        android:textSize="18dp" />
+
+
+</RelativeLayout>

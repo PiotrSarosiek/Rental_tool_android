@@ -7,53 +7,168 @@
     android:background="@color/white"
     tools:context=".ApartmentActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_baseline_house_24" />
+    <ScrollView
 
-    <TextView
-        android:id="@+id/apartment_address"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_margin="10dp"
-        android:textSize="18sp"
-        android:text="Address"
-        android:textAlignment="viewStart"
-        android:gravity="center"
-        android:textColor="@color/black"
-        tools:ignore="RtlCompat" />
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/tenants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_centerVertical="true"
-        android:text="Tenants"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/imageView"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    <Button
-        android:id="@+id/button_create_tenant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:text="Add tenant"
-        android:textSize="13sp"
-        android:layout_below="@+id/apartment_address" />
+            android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/tenants"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/recyclerView"/>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_baseline_house_24" />
+
+            <TextView
+                android:id="@+id/apartment_address"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:text="Address"
+                android:textAlignment="viewStart"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                tools:ignore="RtlCompat" />
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/apartment_address"
+            android:background="@drawable/background_border"
+            android:padding="5dp"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tenants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Tenants"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_create_tenant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:text="Add tenant"
+                android:textSize="13sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@+id/tenants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/recyclerView"/>
+
+        </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/linear_layout_stable_bill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/relative_layout_2"
+                android:background="@drawable/background_border"
+                android:padding="5dp"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/stable_bill_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Stable bill "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button_update_stable_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Modify stable bill"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/stable_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@+id/button_update_stable_bill"
+                    android:text="(the costs in this section will be shared by each tenant)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+
+
+                <TextView
+                    android:id="@+id/administrative_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stable_bill"
+                    android:layout_margin="10dp"
+                    android:text="Administrative Rent : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/administrative_rent_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@+id/stable_bill"
+                    android:layout_toEndOf="@+id/administrative_rent"
+                    android:text="1000"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/extra_costs_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/administrative_rent_value"
+                    android:layout_margin="10dp"
+                    android:text="Extra costs"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <ListView
+                    android:id="@+id/list_view_extra_costs_stable"
+                    android:layout_below="@+id/extra_costs_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
 
 </RelativeLayout>

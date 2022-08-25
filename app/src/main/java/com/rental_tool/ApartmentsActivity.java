@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -75,7 +76,7 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
 
         apartments = new ArrayList<>();
         apartmentListResponse.getApartmentResponseList().forEach(apartmentResponse -> {
-            apartments.add(new ApartmentItem(apartmentResponse.getAddress()));
+            apartments.add(new ApartmentItem(apartmentResponse.getAddress(), String.valueOf(apartmentResponse.getTenants().size())));
         });
 
     }
@@ -126,7 +127,7 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
                 if(response.isSuccessful()){
                     ApartmentResponse apartmentResponse = response.body();
                     apartmentListResponse.getApartmentResponseList().add(apartmentResponse);
-                    apartments.add(new ApartmentItem(apartmentResponse.getAddress()));
+                    apartments.add(new ApartmentItem(apartmentResponse.getAddress(), String.valueOf(apartmentResponse.getTenants().size())));
                     initRecyclerView();
                 }
                 else{
@@ -151,11 +152,11 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
 
     @Override
     public void onItemCLick(int position) {
-        getTenants(apartmentListResponse.getApartmentResponseList().get(position).getId(), apartmentListResponse.getApartmentResponseList().get(position).getAddress());
+        getTenants(apartmentListResponse.getApartmentResponseList().get(position));
     }
 
-    public void getTenants(Long apartmentId, String address){
-        Call<List<TenantResponse>> tenantsResponseCall = ApiClient.getApiService().getTenants(apartmentId);
+    public void getTenants(ApartmentResponse apartmentResponse){
+        Call<List<TenantResponse>> tenantsResponseCall = ApiClient.getApiService().getTenants(apartmentResponse.getId());
         tenantsResponseCall.enqueue(new Callback<List<TenantResponse>>() {
             @Override
             public void onResponse(@NotNull Call<List<TenantResponse>> call, @NotNull Response<List<TenantResponse>> response) {
@@ -163,8 +164,9 @@ public class ApartmentsActivity extends AppCompatActivity implements RecyclerVie
                     List<TenantResponse> tenantResponseList = response.body();
                     startActivity(new Intent(ApartmentsActivity.this, ApartmentActivity.class)
                             .putExtra("data", new TenantListResponse(tenantResponseList))
-                            .putExtra("address", address)
-                            .putExtra("apartmentId", apartmentId));
+                            .putExtra("address", apartmentResponse.getAddress())
+                            .putExtra("apartmentId", apartmentResponse.getId())
+                            .putExtra("stableBill", apartmentResponse.getStableBill()));
                     //finish();
                 }
                 else{

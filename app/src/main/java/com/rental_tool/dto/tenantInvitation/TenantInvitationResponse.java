@@ -3,7 +3,9 @@ package com.rental_tool.dto.tenantInvitation;
 import com.rental_tool.dto.tenant.TenantResponse;
 import com.rental_tool.dto.user.UserResponse;
 
-public class TenantInvitationResponse {
+import java.io.Serializable;
+
+public class TenantInvitationResponse implements Serializable {
 
     private long id;
     private UserResponse user;

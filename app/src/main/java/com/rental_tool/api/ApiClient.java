@@ -2,6 +2,8 @@ package com.rental_tool.api;
 
 import com.rental_tool.service.ApiService;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class ApiClient {
         }
 
 
+        @NotNull
         @Override
         public List<Cookie> loadForRequest(HttpUrl url) {
             if (!url.encodedPath().endsWith("login") && cookies != null) {

@@ -26,6 +26,7 @@
         <activity android:name=".PulpitTenantActivity"/>
         <activity android:name=".ApartmentTenantActivity"/>
         <activity android:name=".InvitationsActivity"/>
+        <activity android:name=".UserSettingsActivity"/>
     </application>
 
 </manifest>

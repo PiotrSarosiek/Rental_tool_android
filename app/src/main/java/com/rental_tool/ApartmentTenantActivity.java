@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,9 +43,6 @@ import retrofit2.Response;
 
 public class ApartmentTenantActivity extends AppCompatActivity {
 
-    AlertDialog.Builder dialogBuilder;
-    AlertDialog dialog;
-
     TextView apartmentAddress;
     TextView rentValue;
     ListView listViewExtraCosts;
@@ -52,6 +50,13 @@ public class ApartmentTenantActivity extends AppCompatActivity {
     ListView listViewExtraCostsStable;
     LinearLayout linearLayout;
     TextView checkSumValue;
+
+    AlertDialog.Builder dialogBuilder;
+    AlertDialog dialog;
+    ImageView closeIcon;
+    TextView textViewNameSurname;
+    TextView textViewEmail;
+    TextView textViewPhoneNumber;
 
     ApartmentResponse apartmentResponse;
 
@@ -83,9 +88,37 @@ public class ApartmentTenantActivity extends AppCompatActivity {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openLandlordDetails();
             }
         });
+    }
+
+    public void openLandlordDetails(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View userDetailsPopupView = getLayoutInflater().inflate(R.layout.user_details_popup, null);
+        textViewNameSurname = (TextView) userDetailsPopupView.findViewById(R.id.text_view_name_surname);
+        textViewEmail = (TextView) userDetailsPopupView.findViewById(R.id.text_view_email);
+        textViewPhoneNumber = (TextView) userDetailsPopupView.findViewById(R.id.text_view_phone);
+        closeIcon = (ImageView) userDetailsPopupView.findViewById(R.id.close_icon);
+
+        initUserDetails();
+
+        dialogBuilder.setView(userDetailsPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        closeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void initUserDetails(){
+        textViewNameSurname.setText(apartmentResponse.getLandlord().getName() + " " + apartmentResponse.getLandlord().getSurname());
+        textViewEmail.setText(apartmentResponse.getLandlord().getEmail());
+        textViewPhoneNumber.setText(apartmentResponse.getLandlord().getPhone());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

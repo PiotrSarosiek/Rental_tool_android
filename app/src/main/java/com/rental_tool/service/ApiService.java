@@ -3,6 +3,8 @@ package com.rental_tool.service;
 import com.rental_tool.dto.apartment.ApartmentRequest;
 import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.login.LoginResponse;
+import com.rental_tool.dto.stableBill.StableBillRequest;
+import com.rental_tool.dto.stableBill.StableBillResponse;
 import com.rental_tool.dto.tenant.TenantRequest;
 import com.rental_tool.dto.tenant.TenantResponse;
 import com.rental_tool.dto.tenantInvitation.TenantInvitationRequest;
@@ -46,10 +48,14 @@ public interface ApiService {
     @GET("tenant_invitation/user")
     Call<List<TenantInvitationResponse>> getUserInvitations();
 
+    @FormUrlEncoded
     @PUT("tenant_invitation/{id}")
     Call<TenantInvitationResponse> updateInvitationStatus(@Path("id") long tenantInvitationId, @Field("accepted") Boolean accepted);
 
     @GET("apartment/assigned_to_tenant")
     Call<ApartmentResponse> getApartmentByTenantAssignedToUser();
+
+    @PUT("apartment/{id}/stable_bill")
+    Call<StableBillResponse> updateStableBill(@Path("id") long apartmentId, @Body StableBillRequest stableBillRequest);
 
 }

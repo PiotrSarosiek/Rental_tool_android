@@ -2,14 +2,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_margin="4dp"
+    android:background="@drawable/background_border_2">
 
 
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@drawable/background_border_2">
 
         <ImageView
             android:id="@+id/image_view"
@@ -38,6 +40,7 @@
             android:src="@drawable/ic_baseline_supervisor_account_24" />
 
         <TextView
+            android:id="@+id/user_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/person_count"
