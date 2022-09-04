@@ -65,7 +65,7 @@ public class PulpitActivity extends AppCompatActivity {
         imageViewFiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(PulpitActivity.this, DocumentsActivity.class));
             }
         });
 
