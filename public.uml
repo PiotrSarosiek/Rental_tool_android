@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>e7eb43ac-c956-437a-b896-39ccbc73a628.SCHEMA:rental_tool.public</OriginalElement>
+  <nodes>
+    <node x="254.64583333333331" y="389.0">e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.apartment</node>
+    <node x="278.3958333333333" y="775.0">e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.extra_cost</node>
+    <node x="103.89583333333331" y="582.0">e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.tenant</node>
+    <node x="80.49999999999997" y="0.0">e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.users</node>
+    <node x="271.8958333333333" y="560.0">e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.unstable_bills</node>
+    <node x="318.4583333333333" y="121.0">e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.stable_bills</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.unstable_bills" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.apartment">
+      <point x="0.0" y="-82.5" />
+      <point x="35.75" y="60.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.apartment" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.stable_bills">
+      <point x="35.75" y="-60.5" />
+      <point x="361.8958333333333" y="369.0" />
+      <point x="376.7083333333333" y="369.0" />
+      <point x="-58.25" y="38.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.extra_cost" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.stable_bills">
+      <point x="55.66666666666669" y="-82.5" />
+      <point x="417.5625" y="750.0" />
+      <point x="487.3125" y="750.0" />
+      <point x="487.3125" y="369.0" />
+      <point x="493.2083333333333" y="369.0" />
+      <point x="58.25" y="38.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.extra_cost" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.unstable_bills">
+      <point x="0.0" y="-82.5" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.users" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.users">
+      <point x="-22.875" y="159.5" />
+      <point x="149.12499999999997" y="349.0" />
+      <point x="50.5" y="349.0" />
+      <point x="50.5" y="79.75" />
+      <point x="-91.5" y="-79.75" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.tenant" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.users">
+      <point x="-37.0" y="-60.5" />
+      <point x="140.89583333333331" y="369.0" />
+      <point x="194.87499999999997" y="369.0" />
+      <point x="22.875" y="159.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.tenant" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.apartment">
+      <point x="37.0" y="-60.5" />
+      <point x="214.89583333333331" y="535.0" />
+      <point x="290.3958333333333" y="535.0" />
+      <point x="-35.75" y="60.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.apartment" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.users">
+      <point x="-35.75" y="-60.5" />
+      <point x="290.3958333333333" y="369.0" />
+      <point x="240.62499999999997" y="369.0" />
+      <point x="68.625" y="159.5" />
+    </edge>
+    <edge source="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.extra_cost" target="e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.tenant">
+      <point x="-55.666666666666686" y="-82.5" />
+      <point x="306.22916666666663" y="750.0" />
+      <point x="177.89583333333331" y="750.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5916666666666667" x="276.0" y="470.0" />
+  <SelectedNodes>
+    <node>e7eb43ac-c956-437a-b896-39ccbc73a628.TABLE:rental_tool.public.apartment</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
