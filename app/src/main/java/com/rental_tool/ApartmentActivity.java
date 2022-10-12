@@ -314,7 +314,6 @@ public class ApartmentActivity extends AppCompatActivity implements RecyclerView
                     Toast.makeText(ApartmentActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(@NotNull Call<TenantResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();

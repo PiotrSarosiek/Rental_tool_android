@@ -55,6 +55,7 @@
             android:background="@color/white"
             android:ems="10"
             android:hint="password"
+            android:inputType="textPassword"
             android:textAlignment="center" />
     </FrameLayout>
 

@@ -3,12 +3,14 @@ package com.rental_tool.service;
 import com.rental_tool.dto.apartment.ApartmentRequest;
 import com.rental_tool.dto.apartment.ApartmentResponse;
 import com.rental_tool.dto.login.LoginResponse;
+import com.rental_tool.dto.register.RegisterRequest;
 import com.rental_tool.dto.stableBill.StableBillRequest;
 import com.rental_tool.dto.stableBill.StableBillResponse;
 import com.rental_tool.dto.tenant.TenantRequest;
 import com.rental_tool.dto.tenant.TenantResponse;
 import com.rental_tool.dto.tenantInvitation.TenantInvitationRequest;
 import com.rental_tool.dto.tenantInvitation.TenantInvitationResponse;
+import com.rental_tool.dto.user.UserResponse;
 
 import java.util.List;
 
@@ -57,5 +59,11 @@ public interface ApiService {
 
     @PUT("apartment/{id}/stable_bill")
     Call<StableBillResponse> updateStableBill(@Path("id") long apartmentId, @Body StableBillRequest stableBillRequest);
+
+    @POST("users/register")
+    Call<UserResponse> register(@Body RegisterRequest registerRequest);
+
+    @POST("users/generate_summary")
+    Call<Void> generateSummary();
 
 }

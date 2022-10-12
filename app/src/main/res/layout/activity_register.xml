@@ -7,29 +7,55 @@
     android:background="@color/white"
     tools:context=".RegisterActivity">
 
-    <TextView
-        android:id="@+id/text_view_registration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Registration"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/frameLayout1"
         android:layout_width="233dp"
         android:layout_height="56dp"
-        android:layout_below="@+id/text_view_registration"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
+        android:background="#244BB5"
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/namee"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="name"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/frameLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:background="#244BB5">
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/surnamee"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="surname"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout5"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/frameLayout4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#244BB5">
+        <EditText
+            android:id="@+id/emaill"
             android:layout_width="228dp"
             android:layout_height="51dp"
             android:layout_margin="3dp"
@@ -39,23 +65,43 @@
             android:textAlignment="center" />
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/frameLayout6"
+        android:layout_width="233dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/frameLayout5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#244BB5">
+        <EditText
+            android:id="@+id/phonee"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_margin="3dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="phone number"
+            android:textAlignment="center" />
+    </FrameLayout>
+
 
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="233dp"
         android:layout_height="56dp"
-        android:layout_below="@+id/frameLayout1"
+        android:layout_below="@+id/frameLayout6"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="#244BB5">
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/passwordd"
             android:layout_width="228dp"
             android:layout_height="51dp"
             android:layout_margin="3dp"
             android:background="@color/white"
             android:ems="10"
             android:hint="password"
+            android:inputType="textPassword"
             android:textAlignment="center" />
     </FrameLayout>
 
@@ -68,13 +114,14 @@
         android:layout_marginTop="10dp"
         android:background="#244BB5">
         <EditText
-            android:id="@+id/confirm_password"
+            android:id="@+id/confirm_passwordd"
             android:layout_width="228dp"
             android:layout_height="51dp"
             android:layout_below="@+id/frameLayout2"
             android:layout_margin="3dp"
             android:background="@color/white"
             android:ems="10"
+            android:inputType="textPassword"
             android:hint="confirm password"
             android:textAlignment="center" />
     </FrameLayout>
@@ -90,7 +137,7 @@
         android:spinnerMode="dropdown"/>
 
     <Button
-        android:id="@+id/log_in"
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@+id/spinner1"

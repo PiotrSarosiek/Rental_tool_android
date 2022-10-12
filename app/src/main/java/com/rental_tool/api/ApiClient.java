@@ -27,7 +27,6 @@ public class ApiClient {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-
         CookieManager cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 
@@ -57,7 +56,6 @@ public class ApiClient {
                 this.cookies = new ArrayList<>(cookies);
             }
         }
-
 
         @NotNull
         @Override

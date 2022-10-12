@@ -33,6 +33,7 @@
             android:background="@color/white"
             android:ems="10"
             android:hint="old password"
+            android:inputType="textPassword"
             android:textAlignment="center" />
     </FrameLayout>
 
@@ -53,6 +54,7 @@
             android:background="@color/white"
             android:ems="10"
             android:hint="new password"
+            android:inputType="textPassword"
             android:textAlignment="center" />
     </FrameLayout>
 
